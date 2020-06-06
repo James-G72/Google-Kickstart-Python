@@ -1,6 +1,3 @@
-# This is still a work in progress as only the logic for test case 1 is in place
-# I hope to get a general case working at some point
-
 import numpy as np
 Cases = int(input())
 for case in range(0,Cases):
@@ -14,9 +11,9 @@ for case in range(0,Cases):
     max_value = 0  # Tracker for the result
     if N <= 3: # Adding in the brute force logic for test case 1
         if P == 1: # This way we know that P isn't 1 for all logic below
-            max_value = max(cumulative[:,0]) # Taking the first row as we only need the largest of the top plates
+            max_value = max(cumulative[:,1]) # Taking the first row as we only need the largest of the top plates
         elif N == 1: # Simplest case
-            max_value = max(cumulative[:,P-1]) # Then we just take how many plates we need
+            max_value = max(cumulative[:,P]) # Then we just take how many plates we need
         elif N == 2:
             for stack_1 in range(0,K+1): # Stack 1 starts empty
                 for stack_2 in range(0,K+1): # Stack 2 starts full
