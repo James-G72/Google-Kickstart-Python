@@ -1,3 +1,6 @@
+# This is still a work in progress as only the logic for test case 1 is in place
+# I hope to get a general case working at some point
+
 import numpy as np
 Cases = int(input())
 for case in range(0,Cases):
