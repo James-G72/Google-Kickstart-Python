@@ -46,7 +46,7 @@ for case in range(0,Cases):
         if P == 1:
             max_value = max(cumulative[:,1]) # Taking the first row as we only need the largest of the top plates
         elif P == N*K:
-            max_value = sum(cumulative[:,P])
+            max_value = sum(cumulative[:,K])
         else: # Then we have to do some more complex logic
             # Hoping it is quick enough to calculate all options and check them - maybe eventually all options could be calculated and checked simultaneously
             sets = Permutations(N,K,P) # This gives us all the possible combinations that would give us enough plates
