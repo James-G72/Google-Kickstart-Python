@@ -1,24 +1,16 @@
 # This passes for all cases - not yet
+import math
+import pandas as pd
 
 Cases = int(input())
 for case in range(0,Cases):
     number, max = [int(s) for s in input().split(' ')]
     withdraw = [int(s) for s in input().split(' ')]
     leave_list = ""
-    leave_tally = 0
-    number_list = [s for s in range(1, number+1)]
-    while leave_tally < number:
-        withdraw[:] = [x-max for x in withdraw]
-        remove_list_1 = []
-        remove_list_2 = []
-        for x in range(0, len(withdraw)):
-            if withdraw[x] <= 0:
-                remove_list_1.append(number_list[x])
-                remove_list_2.append(withdraw[x])
-                leave_list += " "+str(number_list[x])
-                leave_tally += 1
-        for x in range(0, len(remove_list_1)):
-            number_list.remove(remove_list_1[x])
-            withdraw.remove(remove_list_2[x])
+    div = 10000000000
+    minor = [x % max for x in withdraw]
+    major = pd.Series([math.floor(withdraw[x]/max)-minor[x]/div for x in range(0, number)]).sort_values(ascending=True)
+    for x in major.index:
+        leave_list += " " + str(x+1)
 
     print("Case #"+str(case+1)+":"+leave_list)
