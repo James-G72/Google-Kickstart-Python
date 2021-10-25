@@ -1,4 +1,4 @@
-# This passes for all cases - not yet
+# This passes for all cases
 import math
 
 def harvest(array, limit):
