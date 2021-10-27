@@ -9,11 +9,17 @@ def boring_check(num):
     return iupg
 
 Cases = int(input())
+cheat_dict = {}
 for case in range(0,Cases):
     L,R = [int(s) for s in input().split(' ')]
     boring = 0
     for x in range(L,R+1):
-        boring += boring_check(x)
+        if x not in cheat_dict:
+            result = boring_check(x)
+            cheat_dict[x] = result
+            boring += result
+        else:
+            boring += cheat_dict[x]
 
     print("Case #"+str(case+1)+": "+str(boring))
 
