@@ -1,25 +1,20 @@
-# This passes test case 1 and TLE for test case 2
+# This passes both test cases. Methedology stolen
 
 def boring_check(num):
-    str_num = str(num)
-    iupg = 1
-    for x in range(1,len(str_num)+1):
-        if int(str_num[x-1]) % 2 != x % 2:
-            iupg = 0
-    return iupg
+    digits = list(map(int, list(str(num))))
+    base = 5**(len(digits)-1)
+    result = (5*base-5)//(5-1)
+    for poss, digit in enumerate(digits,1):
+        result += (digit+1-poss%2)//2 * base
+        if poss%2 != digit%2:
+            break
+        base //= 5
+    return result
 
 Cases = int(input())
-cheat_dict = {}
 for case in range(0,Cases):
     L,R = [int(s) for s in input().split(' ')]
-    boring = 0
-    for x in range(L,R+1):
-        if x not in cheat_dict:
-            result = boring_check(x)
-            cheat_dict[x] = result
-            boring += result
-        else:
-            boring += cheat_dict[x]
+    boring = boring_check(R+1) - boring_check(L)
 
     print("Case #"+str(case+1)+": "+str(boring))
 
